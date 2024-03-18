@@ -1,0 +1,19 @@
+{
+  "name": "cuhightech24hackathon_backend",
+  "version": "0.0.1",
+  "description": "Backend for Cu HighTech 2024 Hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FaiiFaiipuipui/CuHighTech24Hackathon_Backend.git"
+  },
+  "author": "รวมตัวเฉพาะกิจ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FaiiFaiipuipui/CuHighTech24Hackathon_Backend/issues"
+  },
+  "homepage": "https://github.com/FaiiFaiipuipui/CuHighTech24Hackathon_Backend#readme"
+}

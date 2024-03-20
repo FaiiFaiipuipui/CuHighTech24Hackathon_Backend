@@ -1,0 +1,136 @@
+@startuml
+entity MutualFundEntity {
+    *unique_id : string
+    /' รหัสบลจ '/
+    --
+    last_upd_date : date
+    name_th : string
+    name_en : string
+    active : boolean
+}
+
+entity Funds {
+    * proj_id: string
+    --
+    last_upd_date: date
+    regis_id: string
+    regis_date: string
+    cancel_date: string
+    proj_name_th: string
+    proj_name_en: string
+    proj_abbr_name: string
+    fund_status: string
+    /'สถานะกอง
+    SE = อนุมัติ(อยู่ระหว่าง Filing)
+    EX = หมดเวลาเสนอขาย
+    RG = จดทะเบียน
+    CA = เลิกโครงการ
+    LI = จดทะเบียนเลิก '/
+    unique_id: string
+    permit_us_investment: string
+    invest_country_flage: string
+}
+
+entity FundFactSheet {
+    * last_upd_date: date
+    * proj_id: string
+    --
+    url_halfyear_report: string
+    url_annual_report: string
+    url_factsheet: string
+}
+
+entity FundInfo {
+    * last_upd_date: date
+    * proj_id: string
+    --
+    last_upd_date: date
+    proj_retail_type: string
+    /'     ลักษณะโครงการ -- R , A , N , G , X, H , {null}  
+    A กองทุนรวมที่เสนอขายเฉพาะผู้ลงทุนที่มิใช่รายย่อย
+    B กองทุนรวมที่เสนอขายเฉพาะผู้มีเงินลงทุนสูง
+    G กองทุนรวมพิเศษเพื่อตอบสนองนโยบายภาครัฐ
+    H กองทุนรวมที่เสนอขายผู้ลงทุนที่มิใช่รายย่อยและผู้มีเงินลงทุนสูง
+    N กองทุนเพื่อผู้ลงทุนสถาบัน
+    R กองทุนเพื่อผู้ลงทุนทั่วไป
+    X กองทุนรวมที่เสนอขายผู้ลงทุนสถาบันและผู้ลงทุนรายใหญ่พิเศษ  '/
+    proj_term_flag: boolean
+    proj_term_dd: string
+    proj_term_mm: string
+    proj_term_yy: string
+}
+
+entity FundPolicies {
+    * last_upd_date: date
+    * proj_id: string
+    --
+    policy_desc: string
+    investment_policy_desc: string (fromBase64)
+    management_style: string
+}
+
+entity FundSuitability {
+    * last_upd_date: date
+    * proj_id: string
+    --
+    fund_suitable_desc:string (fromBase64)
+    fund_not_suitable_desc: string (fromBase64)
+    important_notice: string (fromBase64)
+    risk_spectrum_desc: string (fromBase64)
+    risk_spectrum: string
+    /' Risk Spectrum: 1 - 8+ '/
+}
+
+entity FundEstimatedReturn {
+    * last_upd_date: date
+    * proj_id: string
+    --
+    total_estimated_return: float
+    annual_estimated_expense: numeric
+    annual_average_return: float
+    investment_period_year: string
+    investment_period_month: string
+}
+
+entity FundBenchmark {
+    * last_upd_date: date
+    * proj_id: string
+    --
+    group_seq: string
+    benchmark: string
+}
+
+entity FundPerformance {
+    * last_upd_date: date
+    * proj_id: string
+    --
+    class_abbr_name: string
+    performance_type_desc: string
+    reference_period: string
+    performance_val: string
+    as_of_date: string
+}
+
+entity FundDividendPolicy {
+    last_upd_date: string,
+    class_abbr_name: string,
+    dividend_policy: string,
+    dividend_policy_remark: string,
+    __dividend_details: string[]__
+    book_closing_date: string,
+    payment_date: string,
+    dividend_per_share: string
+    __
+}
+
+entity FundDailyInfo {
+    * nav_date: date
+    /' Net Asset Value Date '/
+    * proj_id: string
+    --
+    net_asset: numeric
+    last_val: numeric
+}
+
+
+@enduml

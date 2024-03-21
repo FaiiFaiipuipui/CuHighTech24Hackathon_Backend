@@ -1,4 +1,6 @@
-@startuml
+@startuml Database
+
+/' SEC Fund Factsheet API 01 '/
 entity MutualFundEntity {
     *unique_id : string
     /' รหัสบลจ '/
@@ -9,6 +11,16 @@ entity MutualFundEntity {
     active : boolean
 }
 
+entity MutualFundEntitySocialMedia {
+    *unique_id : string
+    *platform_name : string
+    *platform_account_name : string
+    --
+    platform_url : string
+    last_upd_date: date
+}
+
+/' SEC Fund Factsheet API 02 '/
 entity Funds {
     * proj_id: string
     --
@@ -29,8 +41,14 @@ entity Funds {
     unique_id: string
     permit_us_investment: string
     invest_country_flage: string
+    /' การลงทุนต่างประเทศ
+	1 = กองทุนรวมที่เน้นลงทุนแบบมีความเสี่ยงต่างประเทศ
+	2 = ลงทุนในต่างประเทศบางส่วน
+	3 = กองทุนที่ลงทุนแบบไม่มีความเสี่ยงต่างประเทศ
+	4 = กองทุนที่ลงทุนแบบมีความเสี่ยงทั้งในและต่างประเทศ '/
 }
 
+/' SEC Fund Factsheet API 04 '/
 entity FundFactSheet {
     * last_upd_date: date
     * proj_id: string
@@ -40,7 +58,8 @@ entity FundFactSheet {
     url_factsheet: string
 }
 
-entity FundInfo {
+/' SEC Fund Factsheet API 07 '/
+entity FundProjectInfo {
     * last_upd_date: date
     * proj_id: string
     --
@@ -60,6 +79,7 @@ entity FundInfo {
     proj_term_yy: string
 }
 
+/' SEC Fund Factsheet API 08 '/
 entity FundPolicies {
     * last_upd_date: date
     * proj_id: string
@@ -67,8 +87,10 @@ entity FundPolicies {
     policy_desc: string
     investment_policy_desc: string (fromBase64)
     management_style: string
+    /' กลยุทธ์การบริหารจัดการกองทุน (Management Style) AM = มุ่งหวังให้ผลประกอบการสูงกว่าดัชนีชี้วัด (active management) BH = มีกลยุทธ์การลงทุนครั้งเดียว (buy-and-hold) SM = มุ่งหวังให้ผลประกอบการเคลื่อนไหวตามดัชนีชี้วัด และในบางโอกาสอาจสร้างผลตอบแทนสูงกว่าดัชนีชี้วัด OT = อื่น ๆ PM = มุ่งหวังให้ผลประกอบการเคลื่อนไหวตามดัชนีชี้วัด (passive management/index tracking) '/
 }
 
+/' SEC Fund Factsheet API 12 '/
 entity FundSuitability {
     * last_upd_date: date
     * proj_id: string
@@ -81,6 +103,7 @@ entity FundSuitability {
     /' Risk Spectrum: 1 - 8+ '/
 }
 
+/' SEC Fund Factsheet API 16 '/
 entity FundEstimatedReturn {
     * last_upd_date: date
     * proj_id: string
@@ -92,6 +115,7 @@ entity FundEstimatedReturn {
     investment_period_month: string
 }
 
+/' SEC Fund Factsheet API 18 '/
 entity FundBenchmark {
     * last_upd_date: date
     * proj_id: string
@@ -100,6 +124,7 @@ entity FundBenchmark {
     benchmark: string
 }
 
+/' SEC Fund Factsheet API 22 '/
 entity FundPerformance {
     * last_upd_date: date
     * proj_id: string
@@ -111,6 +136,7 @@ entity FundPerformance {
     as_of_date: string
 }
 
+/' SEC Fund Factsheet API 24 '/
 entity FundDividendPolicy {
     last_upd_date: string,
     class_abbr_name: string,
@@ -123,6 +149,7 @@ entity FundDividendPolicy {
     __
 }
 
+/' SEC Fund Daily Info API 01 '/
 entity FundDailyInfo {
     * nav_date: date
     /' Net Asset Value Date '/

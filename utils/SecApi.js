@@ -1,18 +1,19 @@
+require('dotenv').config()
+
 /**
  * @summary get information from Fund Factsheet API 01. รายชื่อ บลจ.
  */
-export async function fromExternalGetMutualFundEntity() {
+module.exports.fromExternalGetMutualFundEntity = async function () {
   const TIMEOUT = 5000;
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), TIMEOUT);
 
-  fetch("https://api.sec.or.th/FundFactsheet/fund/amc", {
+  return fetch("https://api.sec.or.th/FundFactsheet/fund/amc", {
     method: "GET",
     signal: controller.signal,
     headers: {
       "Cache-Control": "no-cache",
-      "Ocp-Apim-Subscription-Key":
-        process.env.CUHighTech24_BackEnd_FundFactsheet_PrimaryAPIKey,
+      "Ocp-Apim-Subscription-Key": process.env.CUHighTech24_BackEnd_FundFactsheet_PrimaryAPIKey,
     },
   })
     .then((response) => {
@@ -23,19 +24,19 @@ export async function fromExternalGetMutualFundEntity() {
       return response.json();
     })
     .catch((err) => console.error(err));
-}
+};
 
 /**
  * @summary get information from Fund Factsheet API 02. กองทุนภายใต้การบริหารจัดการของบลจ.
  */
-export async function fromExternalGetFundFromThisMutualFundEntity(
+module.exports.fromExternalGetFundFromThisMutualFundEntity = async function (
   MutualFundEntity
 ) {
   const TIMEOUT = 5000;
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), TIMEOUT);
 
-  fetch(`https://api.sec.or.th/FundFactsheet/fund/amc/${MutualFundEntity}`, {
+  return fetch(`https://api.sec.or.th/FundFactsheet/fund/amc/${MutualFundEntity}`, {
     method: "GET",
     signal: controller.signal,
     headers: {
@@ -52,17 +53,17 @@ export async function fromExternalGetFundFromThisMutualFundEntity(
       return response.json();
     })
     .catch((err) => console.error(err));
-}
+};
 
 /**
  * @summary get information from Fund Factsheet API 04. URL ของ Fact Sheet และรายงานประจำปีของกองทุน
  */
-export async function fromExternalGetFundFactSheetURL(proj_id) {
+module.exports.fromExternalGetFundFactSheetURL = async function (proj_id) {
   const TIMEOUT = 5000;
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), TIMEOUT);
 
-  fetch(`https://api.sec.or.th/FundFactsheet/fund/${proj_id}/URLs`, {
+  return fetch(`https://api.sec.or.th/FundFactsheet/fund/${proj_id}/URLs`, {
     method: "GET",
     signal: controller.signal,
     headers: {
@@ -79,17 +80,17 @@ export async function fromExternalGetFundFactSheetURL(proj_id) {
       return response.json();
     })
     .catch((err) => console.error(err));
-}
+};
 
 /**
  * @summary get information from Fund Factsheet API 07. ลักษณะและอายุโครงการ
  */
-export async function fromExternalGetFundProjectInfo(proj_id) {
+module.exports.fromExternalGetFundProjectInfo = async function (proj_id) {
   const TIMEOUT = 5000;
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), TIMEOUT);
 
-  fetch(`https://api.sec.or.th/FundFactsheet/fund/${proj_id}/project_type`, {
+  return fetch(`https://api.sec.or.th/FundFactsheet/fund/${proj_id}/project_type`, {
     method: "GET",
     signal: controller.signal,
     headers: {
@@ -106,17 +107,17 @@ export async function fromExternalGetFundProjectInfo(proj_id) {
       return response.json();
     })
     .catch((err) => console.error(err));
-}
+};
 
 /**
  * @summary get information from Fund Factsheet API 08. ประเภทกองทุนตามนโยบายกองทุน
  */
-export async function fromExternalGetFundPolicies(proj_id) {
+module.exports.fromExternalGetFundPolicies = async function (proj_id) {
   const TIMEOUT = 5000;
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), TIMEOUT);
 
-  fetch(`https://api.sec.or.th/FundFactsheet/fund/${proj_id}/policy`, {
+  return fetch(`https://api.sec.or.th/FundFactsheet/fund/${proj_id}/policy`, {
     method: "GET",
     signal: controller.signal,
     headers: {
@@ -133,17 +134,17 @@ export async function fromExternalGetFundPolicies(proj_id) {
       return response.json();
     })
     .catch((err) => console.error(err));
-}
+};
 
 /**
  * @summary get information from Fund Factsheet API 12. ความเหมาะสมกับผู้ลงทุนและความเสี่ยงของกองทุน
  */
-export async function fromExternalGetFundSuitability(proj_id) {
+module.exports.fromExternalGetFundSuitability = async function (proj_id) {
   const TIMEOUT = 5000;
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), TIMEOUT);
 
-  fetch(`https://api.sec.or.th/FundFactsheet/fund/${proj_id}/suitability`, {
+  return fetch(`https://api.sec.or.th/FundFactsheet/fund/${proj_id}/suitability`, {
     method: "GET",
     signal: controller.signal,
     headers: {
@@ -160,17 +161,17 @@ export async function fromExternalGetFundSuitability(proj_id) {
       return response.json();
     })
     .catch((err) => console.error(err));
-}
+};
 
 /**
  * @summary get information from Fund Factsheet API 18. ดัชนีชี้วัดกองทุน
  */
-export async function fromExternalGetFundBenchmark(proj_id) {
+module.exports.fromExternalGetFundBenchmark = async function (proj_id) {
   const TIMEOUT = 5000;
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), TIMEOUT);
 
-  fetch(`https://api.sec.or.th/FundFactsheet/fund/${proj_id}/benchmark`, {
+  return fetch(`https://api.sec.or.th/FundFactsheet/fund/${proj_id}/benchmark`, {
     method: "GET",
     signal: controller.signal,
     headers: {
@@ -187,17 +188,17 @@ export async function fromExternalGetFundBenchmark(proj_id) {
       return response.json();
     })
     .catch((err) => console.error(err));
-}
+};
 
 /**
  * @summary get information from Fund Daily Info API 01. NAV กองทุนรวมรายวัน
  */
-export async function fromExternalGetFundNAV(proj_id, nav_date) {
+module.exports.fromExternalGetFundNAV = async function (proj_id, nav_date) {
   const TIMEOUT = 5000;
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), TIMEOUT);
 
-  fetch(`https://api.sec.or.th/FundDailyInfo/${proj_id}/dailynav/${nav_date}`, {
+  return fetch(`https://api.sec.or.th/FundDailyInfo/${proj_id}/dailynav/${nav_date}`, {
     method: "GET",
     signal: controller.signal,
     headers: {
@@ -214,4 +215,4 @@ export async function fromExternalGetFundNAV(proj_id, nav_date) {
       return response.json();
     })
     .catch((err) => console.error(err));
-}
+};

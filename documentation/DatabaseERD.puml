@@ -1,6 +1,6 @@
 @startuml Database
 
-/' SEC Fund Factsheet API 01 '/
+/' SEC Fund Factsheet API 01 y'/
 entity MutualFundEntity {
     *unique_id : string
     /' รหัสบลจ '/
@@ -20,7 +20,7 @@ entity MutualFundEntitySocialMedia {
     last_upd_date: date
 }
 
-/' SEC Fund Factsheet API 02 '/
+/' SEC Fund Factsheet API 02 y'/
 entity Funds {
     * proj_id: string
     --
@@ -46,12 +46,14 @@ entity Funds {
 	2 = ลงทุนในต่างประเทศบางส่วน
 	3 = กองทุนที่ลงทุนแบบไม่มีความเสี่ยงต่างประเทศ
 	4 = กองทุนที่ลงทุนแบบมีความเสี่ยงทั้งในและต่างประเทศ '/
+    --
+    * MutualFundEntity.unique_id : string <<FK>>
 }
 
-/' SEC Fund Factsheet API 04 '/
+/' SEC Fund Factsheet API 04 y'/
 entity FundFactSheet {
     * last_upd_date: date
-    * proj_id: string
+    * proj_id: string <<FK>>
     --
     url_halfyear_report: string
     url_annual_report: string
@@ -61,9 +63,8 @@ entity FundFactSheet {
 /' SEC Fund Factsheet API 07 '/
 entity FundProjectInfo {
     * last_upd_date: date
-    * proj_id: string
+    * proj_id: string <<FK>>
     --
-    last_upd_date: date
     proj_retail_type: string
     /'     ลักษณะโครงการ -- R , A , N , G , X, H , {null}  
     A กองทุนรวมที่เสนอขายเฉพาะผู้ลงทุนที่มิใช่รายย่อย
@@ -82,7 +83,7 @@ entity FundProjectInfo {
 /' SEC Fund Factsheet API 08 '/
 entity FundPolicies {
     * last_upd_date: date
-    * proj_id: string
+    * proj_id: string <<FK>>
     --
     policy_desc: string
     investment_policy_desc: string (fromBase64)
@@ -90,10 +91,10 @@ entity FundPolicies {
     /' กลยุทธ์การบริหารจัดการกองทุน (Management Style) AM = มุ่งหวังให้ผลประกอบการสูงกว่าดัชนีชี้วัด (active management) BH = มีกลยุทธ์การลงทุนครั้งเดียว (buy-and-hold) SM = มุ่งหวังให้ผลประกอบการเคลื่อนไหวตามดัชนีชี้วัด และในบางโอกาสอาจสร้างผลตอบแทนสูงกว่าดัชนีชี้วัด OT = อื่น ๆ PM = มุ่งหวังให้ผลประกอบการเคลื่อนไหวตามดัชนีชี้วัด (passive management/index tracking) '/
 }
 
-/' SEC Fund Factsheet API 12 '/
+/' SEC Fund Factsheet API 12 y'/
 entity FundSuitability {
     * last_upd_date: date
-    * proj_id: string
+    * proj_id: string <<FK>>
     --
     fund_suitable_desc:string (fromBase64)
     fund_not_suitable_desc: string (fromBase64)
@@ -103,10 +104,10 @@ entity FundSuitability {
     /' Risk Spectrum: 1 - 8+ '/
 }
 
-/' SEC Fund Factsheet API 16 '/
+/' SEC Fund Factsheet API 16 y'/
 entity FundEstimatedReturn {
     * last_upd_date: date
-    * proj_id: string
+    * proj_id: string <<FK>>
     --
     total_estimated_return: float
     annual_estimated_expense: numeric
@@ -115,10 +116,10 @@ entity FundEstimatedReturn {
     investment_period_month: string
 }
 
-/' SEC Fund Factsheet API 18 '/
+/' SEC Fund Factsheet API 18 y'/
 entity FundBenchmark {
     * last_upd_date: date
-    * proj_id: string
+    * proj_id: string <<FK>>
     --
     group_seq: string
     benchmark: string
@@ -127,7 +128,7 @@ entity FundBenchmark {
 /' SEC Fund Factsheet API 22 '/
 entity FundPerformance {
     * last_upd_date: date
-    * proj_id: string
+    * proj_id: string <<FK>>
     --
     class_abbr_name: string
     performance_type_desc: string
@@ -136,9 +137,11 @@ entity FundPerformance {
     as_of_date: string
 }
 
-/' SEC Fund Factsheet API 24 '/
+/' SEC Fund Factsheet API 24 y'/
 entity FundDividendPolicy {
-    last_upd_date: string,
+    * last_upd_date: date
+    * proj_id: string <<FK>>
+    --
     class_abbr_name: string,
     dividend_policy: string,
     dividend_policy_remark: string,
@@ -146,18 +149,29 @@ entity FundDividendPolicy {
     book_closing_date: string,
     payment_date: string,
     dividend_per_share: string
-    __
 }
 
-/' SEC Fund Daily Info API 01 '/
+/' SEC Fund Daily Info API 01 y'/
 entity FundDailyInfo {
     * nav_date: date
     /' Net Asset Value Date '/
-    * proj_id: string
+    * proj_id: string <<FK>>
     --
     net_asset: numeric
     last_val: numeric
 }
 
+/' Entity Relations '/
+MutualFundEntity ||..o{ Funds
+MutualFundEntity ||..o{ MutualFundEntitySocialMedia
+Funds ||..o{ FundDailyInfo
+Funds ||..o{ FundPolicies
+Funds ||..o{ FundBenchmark
+Funds ||..o{ FundDividendPolicy
+Funds ||..o{ FundPerformance
+Funds ||..o{ FundSuitability
+Funds ||..o{ FundEstimatedReturn
+Funds ||..o{ FundFactSheet
+Funds ||..o{ FundProjectInfo
 
 @enduml

@@ -15,10 +15,7 @@ export interface Database {
   fundProjectInfo: FundProjectInfoTable
   fundPolicies: FundPoliciesTable
   fundSuitability: FundSuitabilityTable
-  fundEstimatedReturn: FundEstimatedReturnTable
   fundBenchmark: FundBenchmarkTable
-  fundPerformance: FundPerformanceTable
-  fundDividendPolicy: FundDividendPolicyTable
   fundDailyInfo: FundDailyInfoTable
 }
 export interface MutualFundEntityTable {

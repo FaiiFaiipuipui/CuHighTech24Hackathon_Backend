@@ -3,4 +3,4 @@ Backend for Cu HighTech 2024 Hackathon
 
 Backend System: Node.js
 Database system: Postgres
-SQL query builder: Kysely
+SQL query builder: knex

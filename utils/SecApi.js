@@ -192,7 +192,7 @@ export async function fromExternalGetFundBenchmark(proj_id) {
 /**
  * @summary get information from Fund Daily Info API 01. NAV กองทุนรวมรายวัน
  */
-export async function fromExternalGetFundBenchmark(proj_id, nav_date) {
+export async function fromExternalGetFundNAV(proj_id, nav_date) {
   const TIMEOUT = 5000;
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), TIMEOUT);
@@ -209,7 +209,7 @@ export async function fromExternalGetFundBenchmark(proj_id, nav_date) {
     .then((response) => {
       clearTimeout(id);
       if (!response.ok) {
-        throw new Error("fromExternalGetFundBenchmark failed.");
+        throw new Error("fromExternalGetFundNAV failed.");
       }
       return response.json();
     })

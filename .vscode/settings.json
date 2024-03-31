@@ -4,5 +4,7 @@
   "cSpell.words": [
     "Insertable",
     "Updateable"
-  ]
+  ],
+  "editor.fontFamily": "JetBrainsMono Nerd Font",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font"
 }

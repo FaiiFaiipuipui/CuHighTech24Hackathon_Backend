@@ -2,6 +2,7 @@
   "name": "cuhightech24hackathon-backend",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
@@ -21,6 +22,8 @@
     "type-fest": "^4.14.0"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.12"
+    "@types/jest": "^29.5.12",
+    "@types/pg": "^8.11.4",
+    "typescript": "^5.4.3"
   }
 }

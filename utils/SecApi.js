@@ -203,7 +203,7 @@ export async function fromExternalGetFundBenchmark(proj_id, nav_date) {
     headers: {
       "Cache-Control": "no-cache",
       "Ocp-Apim-Subscription-Key":
-        process.env.CUHighTech24_BackEnd_FundFactsheet_PrimaryAPIKey,
+        process.env.CUHighTech24_BackEnd_FundDailyInfo_PrimaryAPIKey,
     },
   })
     .then((response) => {

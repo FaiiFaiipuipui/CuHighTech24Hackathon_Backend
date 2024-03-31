@@ -57,7 +57,7 @@ export interface FundsTable {
     fund_status: string
     unique_id: string
     permit_us_investment: string
-    invest_country_flage: string
+    invest_country_flag: string
     MutualFundEntity_unique_id : string
 }
 
@@ -82,6 +82,7 @@ export interface FundProjectInfoTable {
   proj_id: ColumnType<string, string , never>
   proj_retail_type: string
   proj_term_flag: boolean
+  //TODO change type?
   proj_term_dd: string
   proj_term_mm: string
   proj_term_yy: string

@@ -5,7 +5,7 @@ entity MutualFundEntity {
     *unique_id : string
     /' รหัสบลจ '/
     --
-    last_upd_date : date
+    last_upd_date : Date
     name_th : string
     name_en : string
     active : boolean
@@ -17,14 +17,14 @@ entity MutualFundEntitySocialMedia {
     *platform_account_name : string
     --
     platform_url : string
-    last_upd_date: date
+    last_upd_date: Date
 }
 
 /' SEC Fund Factsheet API 02 y'/
 entity Funds {
     * proj_id: string
     --
-    last_upd_date: date
+    last_upd_date: Date
     regis_id: string
     regis_date: string
     cancel_date: string
@@ -38,9 +38,8 @@ entity Funds {
     RG = จดทะเบียน
     CA = เลิกโครงการ
     LI = จดทะเบียนเลิก '/
-    unique_id: string
     permit_us_investment: string
-    invest_country_flage: string
+    invest_country_flag: string
     /' การลงทุนต่างประเทศ
 	1 = กองทุนรวมที่เน้นลงทุนแบบมีความเสี่ยงต่างประเทศ
 	2 = ลงทุนในต่างประเทศบางส่วน
@@ -52,7 +51,7 @@ entity Funds {
 
 /' SEC Fund Factsheet API 04 y'/
 entity FundFactSheet {
-    * last_upd_date: date
+    * last_upd_date: Date
     * proj_id: string <<FK>>
     --
     url_halfyear_report: string
@@ -62,7 +61,7 @@ entity FundFactSheet {
 
 /' SEC Fund Factsheet API 07 '/
 entity FundProjectInfo {
-    * last_upd_date: date
+    * last_upd_date: Date
     * proj_id: string <<FK>>
     --
     proj_retail_type: string
@@ -82,7 +81,7 @@ entity FundProjectInfo {
 
 /' SEC Fund Factsheet API 08 '/
 entity FundPolicies {
-    * last_upd_date: date
+    * last_upd_date: Date
     * proj_id: string <<FK>>
     --
     policy_desc: string
@@ -93,7 +92,7 @@ entity FundPolicies {
 
 /' SEC Fund Factsheet API 12 y'/
 entity FundSuitability {
-    * last_upd_date: date
+    * last_upd_date: Date
     * proj_id: string <<FK>>
     --
     fund_suitable_desc:string (fromBase64)
@@ -106,7 +105,7 @@ entity FundSuitability {
 
 /' SEC Fund Factsheet API 16 y'/
 entity FundEstimatedReturn {
-    * last_upd_date: date
+    * last_upd_date: Date
     * proj_id: string <<FK>>
     --
     total_estimated_return: float
@@ -118,7 +117,7 @@ entity FundEstimatedReturn {
 
 /' SEC Fund Factsheet API 18 y'/
 entity FundBenchmark {
-    * last_upd_date: date
+    * last_upd_date: Date
     * proj_id: string <<FK>>
     --
     group_seq: string
@@ -127,7 +126,7 @@ entity FundBenchmark {
 
 /' SEC Fund Factsheet API 22 '/
 entity FundPerformance {
-    * last_upd_date: date
+    * last_upd_date: Date
     * proj_id: string <<FK>>
     --
     class_abbr_name: string
@@ -139,7 +138,7 @@ entity FundPerformance {
 
 /' SEC Fund Factsheet API 24 y'/
 entity FundDividendPolicy {
-    * last_upd_date: date
+    * last_upd_date: Date
     * proj_id: string <<FK>>
     --
     class_abbr_name: string,
@@ -153,7 +152,7 @@ entity FundDividendPolicy {
 
 /' SEC Fund Daily Info API 01 y'/
 entity FundDailyInfo {
-    * nav_date: date
+    * nav_date: Date
     /' Net Asset Value Date '/
     * proj_id: string <<FK>>
     --

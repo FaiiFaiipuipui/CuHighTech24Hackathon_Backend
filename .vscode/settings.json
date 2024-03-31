@@ -1,4 +1,8 @@
 {
   "better-comments.highlightPlainText": true,
-  "todo-tree.highlights.enabled": false
+  "todo-tree.highlights.enabled": false,
+  "cSpell.words": [
+    "Insertable",
+    "Updateable"
+  ]
 }

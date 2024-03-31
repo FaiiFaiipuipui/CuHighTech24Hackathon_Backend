@@ -91,20 +91,6 @@ export async function up(db: Kysely<any>): Promise<void> {
     .execute()
 
   await db.schema
-    .createTable('fundEstimatedReturn')
-    .addColumn('last_upd_date', 'date', (col) => col.notNull())
-    .addColumn('proj_id', 'varchar', (col) =>
-      col.references('funds.proj_id').onDelete('cascade').notNull()
-    )
-    .addPrimaryKeyConstraint('fundEstimatedReturn_PK', ['last_upd_date', 'proj_id'])
-    .addColumn('total_estimated_return', 'numeric')
-    .addColumn('annual_estimated_expense', 'numeric')
-    .addColumn('annual_average_return', 'numeric')
-    .addColumn('investment_period_year', 'varchar')
-    .addColumn('investment_period_month', 'varchar')
-    .execute()
-
-  await db.schema
     .createTable('fundBenchmark')
     .addColumn('last_upd_date', 'date', (col) => col.notNull())
     .addColumn('proj_id', 'varchar', (col) =>
@@ -113,33 +99,6 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addPrimaryKeyConstraint('fundBenchmark_PK', ['last_upd_date', 'proj_id'])
     .addColumn('group_seq', 'varchar')
     .addColumn('benchmark', 'varchar')
-    .execute()
-
-  await db.schema
-    .createTable('fundPerformance')
-    .addColumn('last_upd_date', 'date', (col) => col.notNull())
-    .addColumn('proj_id', 'varchar', (col) =>
-      col.references('funds.proj_id').onDelete('cascade').notNull()
-    )
-    .addPrimaryKeyConstraint('fundPerformance_PK', ['last_upd_date', 'proj_id'])
-    .addColumn('class_abbr_name', 'varchar')
-    .addColumn('performance_type_desc', 'varchar')
-    .addColumn('reference_period', 'varchar')
-    .addColumn('performance_val', 'varchar')
-    .addColumn('as_of_date', 'varchar')
-    .execute()
-
-  await db.schema
-    .createTable('fundDividendPolicy')
-    .addColumn('last_upd_date', 'date', (col) => col.notNull())
-    .addColumn('proj_id', 'varchar', (col) =>
-      col.references('funds.proj_id').onDelete('cascade').notNull()
-    )
-    .addPrimaryKeyConstraint('fundDividendPolicy_PK', ['last_upd_date', 'proj_id'])
-    .addColumn('class_abbr_name', 'varchar')
-    .addColumn('dividend_policy', 'varchar')
-    .addColumn('dividend_policy_remark', 'varchar')
-    .addColumn('dividend_details', 'jsonb')
     .execute()
 
   await db.schema
@@ -156,10 +115,7 @@ export async function up(db: Kysely<any>): Promise<void> {
 
 export async function down(db: Kysely<any>): Promise<void> {
   await db.schema.dropTable('fundDailyInfo').execute()
-  await db.schema.dropTable('fundDividendPolicy').execute()
-  await db.schema.dropTable('fundPerformance').execute()
   await db.schema.dropTable('fundBenchmark').execute()
-  await db.schema.dropTable('fundEstimatedReturn').execute()
   await db.schema.dropTable('fundSuitability').execute()
   await db.schema.dropTable('fundPolicies').execute()
   await db.schema.dropTable('fundProjectInfo').execute()

@@ -103,18 +103,6 @@ entity FundSuitability {
     /' Risk Spectrum: 1 - 8+ '/
 }
 
-/' SEC Fund Factsheet API 16 y'/
-entity FundEstimatedReturn {
-    * last_upd_date: Date
-    * proj_id: string <<FK>>
-    --
-    total_estimated_return: float
-    annual_estimated_expense: numeric
-    annual_average_return: float
-    investment_period_year: string
-    investment_period_month: string
-}
-
 /' SEC Fund Factsheet API 18 y'/
 entity FundBenchmark {
     * last_upd_date: Date
@@ -122,32 +110,6 @@ entity FundBenchmark {
     --
     group_seq: string
     benchmark: string
-}
-
-/' SEC Fund Factsheet API 22 '/
-entity FundPerformance {
-    * last_upd_date: Date
-    * proj_id: string <<FK>>
-    --
-    class_abbr_name: string
-    performance_type_desc: string
-    reference_period: string
-    performance_val: string
-    as_of_date: string
-}
-
-/' SEC Fund Factsheet API 24 y'/
-entity FundDividendPolicy {
-    * last_upd_date: Date
-    * proj_id: string <<FK>>
-    --
-    class_abbr_name: string,
-    dividend_policy: string,
-    dividend_policy_remark: string,
-    __dividend_details: string[]__
-    book_closing_date: string,
-    payment_date: string,
-    dividend_per_share: string
 }
 
 /' SEC Fund Daily Info API 01 y'/
@@ -166,10 +128,7 @@ MutualFundEntity ||..o{ MutualFundEntitySocialMedia
 Funds ||..o{ FundDailyInfo
 Funds ||..o{ FundPolicies
 Funds ||..o{ FundBenchmark
-Funds ||..o{ FundDividendPolicy
-Funds ||..o{ FundPerformance
 Funds ||..o{ FundSuitability
-Funds ||..o{ FundEstimatedReturn
 Funds ||..o{ FundFactSheet
 Funds ||..o{ FundProjectInfo
 

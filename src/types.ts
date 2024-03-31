@@ -118,20 +118,6 @@ export type FundSuitability = Selectable<FundSuitabilityTable>
 export type NewFundSuitability = Insertable<FundSuitabilityTable>
 export type FundSuitabilityUpdate = Updateable<FundSuitabilityTable>
 
-export interface FundEstimatedReturnTable {
-  last_upd_date: Date
-  proj_id: ColumnType<string, string , never>
-  total_estimated_return: number
-  annual_estimated_expense: number
-  annual_average_return: number
-  investment_period_year: string
-  investment_period_month: string
-}
-
-export type FundEstimatedReturn = Selectable<FundEstimatedReturnTable>
-export type NewFundEstimatedReturn = Insertable<FundEstimatedReturnTable>
-export type FundEstimatedReturnUpdate = Updateable<FundEstimatedReturnTable>
-
 export interface FundBenchmarkTable {
   last_upd_date: Date
   proj_id: ColumnType<string, string , never>
@@ -142,37 +128,6 @@ export interface FundBenchmarkTable {
 export type FundBenchmark = Selectable<FundBenchmarkTable>
 export type NewFundBenchmark = Insertable<FundBenchmarkTable>
 export type FundBenchmarkUpdate = Updateable<FundBenchmarkTable>
-
-export interface FundPerformanceTable {
-  last_upd_date: Date
-  proj_id: ColumnType<string, string , never>
-  class_abbr_name: string
-  performance_type_desc: string
-  reference_period: string
-  performance_val: string
-  as_of_date: string
-}
-
-export type FundPerformance = Selectable<FundPerformanceTable>
-export type NewFundPerformance = Insertable<FundPerformanceTable>
-export type FundPerformanceUpdate = Updateable<FundPerformanceTable>
-
-export interface FundDividendPolicyTable {
-  last_upd_date: Date
-  proj_id: ColumnType<string, string , never>
-  class_abbr_name: string,
-  dividend_policy: string,
-  dividend_policy_remark: string,
-  dividend_details: JSONColumnType<{
-    book_closing_date: string | null;
-    payment_date: string | null;
-    dividend_per_share: string | null;
-  }>
-}
-
-export type FundDividendPolicy = Selectable<FundDividendPolicyTable>
-export type NewFundDividendPolicy = Insertable<FundDividendPolicyTable>
-export type FundDividendPolicyUpdate = Updateable<FundDividendPolicyTable>
 
 export interface FundDailyInfoTable {
   nav_date: Date

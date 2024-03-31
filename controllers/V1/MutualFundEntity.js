@@ -2,17 +2,20 @@
  * @description incorporated with SEC Fund Factsheet API 01
  */
 
+const { response } = require("express");
+const { fromExternalGetMutualFundEntity } = require("../../utils/SecApi");
+
 /**
  * @description Get all Mutual Fund Entities
  * @route GET /api/v1/entities
  * @access Public
  */
-exports.getMutualFundEntity = (req, res, next)=> {
+exports.getMutualFundEntity = (req, res, next) => {
   try {
-    return res.json({success: true});
+    return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res.json({ success: false });
   }
 };
 
@@ -21,12 +24,12 @@ exports.getMutualFundEntity = (req, res, next)=> {
  * @route POST /api/v1/create/entities
  * @access Private
  */
-exports.postMutualFundEntity = (req, res, next)=> {
+exports.postMutualFundEntity = (req, res, next) => {
   try {
-    return res.json({success: true});
+    return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res.json({ success: false });
   }
 };
 
@@ -35,12 +38,12 @@ exports.postMutualFundEntity = (req, res, next)=> {
  * @route PUT /api/v1/update/entities
  * @access Private
  */
-exports.postMutualFundEntity = (req, res, next)=> {
+exports.postMutualFundEntity = (req, res, next) => {
   try {
-    return res.json({success: true});
+    return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res.json({ success: false });
   }
 };
 
@@ -49,12 +52,12 @@ exports.postMutualFundEntity = (req, res, next)=> {
  * @route DELETE /api/v1/update/entities
  * @access Private
  */
-exports.postMutualFundEntity = (req, res, next)=> {
+exports.postMutualFundEntity = (req, res, next) => {
   try {
-    return res.json({success: true});
+    return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res.json({ success: false });
   }
 };
 
@@ -63,11 +66,13 @@ exports.postMutualFundEntity = (req, res, next)=> {
  * @route PATCH /api/v1/refetch/entities
  * @access Private
  */
-exports.refetchMutualFundEntity = (req, res, next)=> {
+exports.refetchMutualFundEntity = async (req, res, next) => {
   try {
-    return res.json({success: true});
+    let response = await fromExternalGetMutualFundEntity()
+    console.log(response);
+    return res.json({ success: true, data: response });
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res.json({ success: false });
   }
 };

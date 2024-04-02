@@ -8,7 +8,7 @@ const { DBUpsert, DBSelectAllColumnFromTable } = require("../../database/databas
 
 /**
  * @description Get all Mutual Fund Entities
- * @route GET /api/v1/entities
+ * @route GET /api/v1/read/entities
  * @access Public
  */
 exports.getMutualFundEntity = async (req, res, next) => {

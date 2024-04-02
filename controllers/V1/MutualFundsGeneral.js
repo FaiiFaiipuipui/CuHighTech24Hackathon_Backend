@@ -2,17 +2,23 @@
  * @description incorporated with SEC Fund Factsheet API 02
  */
 
+const { DBUpsert } = require("../../database/databaseLibs");
+const db = require("../../database/db");
+const {
+  fromExternalGetFundFromThisMutualFundEntity,
+} = require("../../utils/SecApi");
+
 /**
- * @description Get all Mutual Funds 
+ * @description Get all Mutual Funds
  * @route GET /api/v1/funds
  * @access Public
  */
-exports.getMutualFund = (req, res, next)=> {
+exports.getMutualFund = (req, res, next) => {
   try {
-    return res.json({success: true});
+    return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res.json({ success: false });
   }
 };
 
@@ -21,12 +27,12 @@ exports.getMutualFund = (req, res, next)=> {
  * @route POST /api/v1/create/fund
  * @access Private
  */
-exports.postMutualFundEntity = (req, res, next)=> {
+exports.postMutualFunds = (req, res, next) => {
   try {
-    return res.json({success: true});
+    return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res.json({ success: false });
   }
 };
 
@@ -35,26 +41,26 @@ exports.postMutualFundEntity = (req, res, next)=> {
  * @route PUT /api/v1/update/fund/:fundId
  * @access Private
  */
-exports.postMutualFundEntity = (req, res, next)=> {
+exports.postMutualFunds = (req, res, next) => {
   try {
-    return res.json({success: true});
+    return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res.json({ success: false });
   }
 };
 
 /**
- * @description delete a Mutual Fund 
+ * @description delete a Mutual Fund
  * @route DELETE /api/v1/update/fund/:fundId
  * @access Private
  */
-exports.postMutualFundEntity = (req, res, next)=> {
+exports.postMutualFunds = (req, res, next) => {
   try {
-    return res.json({success: true});
+    return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res.json({ success: false });
   }
 };
 
@@ -63,11 +69,28 @@ exports.postMutualFundEntity = (req, res, next)=> {
  * @route PATCH /api/v1/refetch/fund
  * @access Private
  */
-exports.refetchMutualFundEntity = (req, res, next)=> {
+exports.refetchMutualFunds = async (req, res, next) => {
   try {
-    return res.json({success: true});
+    const entitiesArray = await db("mutualFundEntity").select("unique_id");
+    for (const entities of entitiesArray) {
+      let funds = await fromExternalGetFundFromThisMutualFundEntity(
+        Object.values(entities)
+      );
+      funds = funds.map((fund) => {
+        let newFund = {
+          ...fund,
+          managingMutualFundEntity: fund.unique_id,
+        };
+        delete newFund.unique_id
+        return newFund;
+      });
+      console.log(funds);
+      let upsertResult = await DBUpsert("funds", funds, "proj_id");
+    }
+
+    return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res.json({ success: false });
   }
 };

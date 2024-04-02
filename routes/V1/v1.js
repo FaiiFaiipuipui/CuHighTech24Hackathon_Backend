@@ -3,8 +3,10 @@ const router = Router();
 
 // Route files
 const refetch = require("./refetch");
+const read = require('./read');
 
 router.use("/refetch", refetch);
+router.use('/read', read);
 
 router.get("/", (req, res) => {
   res.status(200);

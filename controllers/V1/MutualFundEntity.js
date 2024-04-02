@@ -4,15 +4,17 @@
 
 const { response } = require("express");
 const { fromExternalGetMutualFundEntity } = require("../../utils/SecApi");
+const { DBUpsert, DBSelectAllColumnFromTable } = require("../../database/databaseLibs");
 
 /**
  * @description Get all Mutual Fund Entities
  * @route GET /api/v1/entities
  * @access Public
  */
-exports.getMutualFundEntity = (req, res, next) => {
+exports.getMutualFundEntity = async (req, res, next) => {
   try {
-    return res.json({ success: true });
+    let response = await DBSelectAllColumnFromTable('mutualFundEntity')
+    return res.json({ success: true, data: response });
   } catch (error) {
     console.log(error.stack);
     return res.json({ success: false });
@@ -38,7 +40,7 @@ exports.postMutualFundEntity = (req, res, next) => {
  * @route PUT /api/v1/update/entities
  * @access Private
  */
-exports.postMutualFundEntity = (req, res, next) => {
+exports.putMutualFundEntity = (req, res, next) => {
   try {
     return res.json({ success: true });
   } catch (error) {
@@ -52,7 +54,7 @@ exports.postMutualFundEntity = (req, res, next) => {
  * @route DELETE /api/v1/update/entities
  * @access Private
  */
-exports.postMutualFundEntity = (req, res, next) => {
+exports.deleteMutualFundEntity = (req, res, next) => {
   try {
     return res.json({ success: true });
   } catch (error) {
@@ -69,7 +71,9 @@ exports.postMutualFundEntity = (req, res, next) => {
 exports.refetchMutualFundEntity = async (req, res, next) => {
   try {
     let response = await fromExternalGetMutualFundEntity()
-    console.log(response);
+    let result = await DBUpsert('mutualFundEntity', response, 'unique_id');
+    console.log(result);
+    //console.log(response);
     return res.json({ success: true, data: response });
   } catch (error) {
     console.log(error.stack);

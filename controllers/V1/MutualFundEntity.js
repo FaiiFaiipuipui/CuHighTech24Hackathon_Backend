@@ -17,7 +17,9 @@ exports.getMutualFundEntity = async (req, res, next) => {
     return res.json({ success: true, data: response });
   } catch (error) {
     console.log(error.stack);
-    return res.json({ success: false });
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -31,7 +33,9 @@ exports.postMutualFundEntity = (req, res, next) => {
     return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({ success: false });
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -45,7 +49,9 @@ exports.putMutualFundEntity = (req, res, next) => {
     return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({ success: false });
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -59,7 +65,9 @@ exports.deleteMutualFundEntity = (req, res, next) => {
     return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({ success: false });
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -77,6 +85,8 @@ exports.refetchMutualFundEntity = async (req, res, next) => {
     return res.json({ success: true, data: response });
   } catch (error) {
     console.log(error.stack);
-    return res.json({ success: false });
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };

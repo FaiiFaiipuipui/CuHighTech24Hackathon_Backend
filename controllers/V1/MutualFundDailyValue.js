@@ -12,7 +12,9 @@ exports.getMutualFund = (req, res, next)=> {
     return res.json({success: true});
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -26,7 +28,9 @@ exports.getMutualFund = (req, res, next)=> {
     return res.json({success: true});
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -40,7 +44,9 @@ exports.getMutualFund = (req, res, next)=> {
     return res.json({success: true});
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -54,7 +60,9 @@ exports.getMutualFund = (req, res, next)=> {
     return res.json({success: true});
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -71,7 +79,9 @@ exports.getMutualFund = (req, res, next)=> {
     return res.json({success: true});
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -88,7 +98,9 @@ exports.getMutualFund = (req, res, next)=> {
     return res.json({success: true});
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -102,6 +114,8 @@ exports.refetchMutualFundEntity = (req, res, next)=> {
     return res.json({success: true});
   } catch (error) {
     console.log(error.stack);
-    return res.json({success: false});
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };

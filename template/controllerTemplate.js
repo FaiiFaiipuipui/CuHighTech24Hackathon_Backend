@@ -13,7 +13,9 @@ exports.getOBJECTNAME = async (req, res, next) => {
     return res.json({ success: true, data: response });
   } catch (error) {
     console.log(error.stack);
-    return res.json({ success: false });
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -27,7 +29,9 @@ exports.postOBJECTNAME = (req, res, next) => {
     return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({ success: false });
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -41,7 +45,9 @@ exports.putOBJECTNAME = (req, res, next) => {
     return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({ success: false });
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -55,7 +61,9 @@ exports.deleteOBJECTNAME = (req, res, next) => {
     return res.json({ success: true });
   } catch (error) {
     console.log(error.stack);
-    return res.json({ success: false });
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
 
@@ -69,6 +77,8 @@ exports.refetchOBJECTNAME = async (req, res, next) => {
     return res.json({ success: true, data: response });
   } catch (error) {
     console.log(error.stack);
-    return res.json({ success: false });
+    return res
+    .status(500)
+    .json({ success: false });
   }
 };
